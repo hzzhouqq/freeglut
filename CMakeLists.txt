@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.1 FATAL_ERROR)
-PROJECT(freeglut LANGUAGES C)
+PROJECT(freeglut)
 
 if (POLICY CMP0072)
     # This policy sets libOpenGL.so (GLVND) as the default GL library to link
@@ -646,6 +646,28 @@ MACRO(ADD_DEMO name)
     ENDIF()
 ENDMACRO()
 
+
+MACRO(ADD_CPPDEMO name)
+    IF( FREEGLUT_BUILD_DEMOS )
+        IF(FREEGLUT_BUILD_SHARED_LIBS)
+            ADD_EXECUTABLE(${name} ${ARGN})
+            TARGET_LINK_LIBRARIES(${name} ${DEMO_LIBS} freeglut)
+            IF(WIN32 AND MSVC)
+                SET_TARGET_PROPERTIES(${name} PROPERTIES DEBUG_POSTFIX d)
+				# SET_TARGET_PROPERTIES(${name} PROPERTIES LINKER_LANGUAGE CXX)
+            ENDIF()
+        ENDIF()
+        IF(FREEGLUT_BUILD_STATIC_LIBS)
+            ADD_EXECUTABLE(${name}_static ${ARGN})
+            TARGET_LINK_LIBRARIES(${name}_static ${DEMO_LIBS} freeglut_static)
+            IF(WIN32 AND MSVC)
+                SET_TARGET_PROPERTIES(${name}_static PROPERTIES DEBUG_POSTFIX d)
+				# SET_TARGET_PROPERTIES(${name}_static PROPERTIES LINKER_LANGUAGE CXX)
+            ENDIF()
+        ENDIF()
+    ENDIF()
+ENDMACRO()
+
 ADD_DEMO(CallbackMaker   progs/demos/CallbackMaker/CallbackMaker.c)
 ADD_DEMO(Fractals        progs/demos/Fractals/fractals.c)
 ADD_DEMO(Fractals_random progs/demos/Fractals_random/fractals_random.c)
@@ -673,6 +695,20 @@ ADD_DEMO(keyboard        progs/demos/keyboard/keyboard.c)
 ADD_DEMO(indexed_color   progs/demos/indexed_color/idxcol.c)
 ADD_DEMO(3dview          progs/demos/3dview/3dview.c)
 
+ADD_CPPDEMO(inertia_camera  progs/demos/inertia_camera/camera.cpp
+						 progs/demos/inertia_camera/camera.hpp
+						 progs/demos/inertia_camera/car.cpp
+						 progs/demos/inertia_camera/car.hpp
+						 progs/demos/inertia_camera/envrnmnt.cpp
+						 progs/demos/inertia_camera/envrnmnt.hpp
+						 progs/demos/inertia_camera/inertia_camera.cpp
+						 progs/demos/inertia_camera/object.cpp
+						 progs/demos/inertia_camera/object.hpp
+						 progs/demos/inertia_camera/tgaldr.cpp
+						 progs/demos/inertia_camera/tgaldr.hpp
+						 progs/demos/inertia_camera/vector.cpp
+						 progs/demos/inertia_camera/vector.hpp)
+			 
 
 
 # pkg-config support, to install at $(libdir)/pkgconfig
