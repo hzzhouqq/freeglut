@@ -708,7 +708,10 @@ ADD_CPPDEMO(inertia_camera  progs/demos/inertia_camera/camera.cpp
 						 progs/demos/inertia_camera/tgaldr.hpp
 						 progs/demos/inertia_camera/vector.cpp
 						 progs/demos/inertia_camera/vector.hpp)
-			 
+
+ADD_CPPDEMO(boe_aero  	 progs/demos/boe_aero/indexed_tri_mesh.cpp
+						 progs/demos/boe_aero/indexed_tri_mesh.hpp
+						 progs/demos/boe_aero/air_plane.cpp)			 
 
 
 # pkg-config support, to install at $(libdir)/pkgconfig
