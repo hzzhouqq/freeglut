@@ -55,7 +55,7 @@ public:
 	}
 	// The length of the vector
 	float Length( ) {
-		return (float)sqrt( x * x + y * y + z * z );
+		return (float)sqrtf( x * x + y * y + z * z );
 	}
 	// Incremental addition of two vectors
 	void operator+=( const Vector3f& v ) {
