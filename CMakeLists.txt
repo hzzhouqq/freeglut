@@ -702,6 +702,7 @@ ADD_CPPDEMO(inertia_camera  progs/demos/inertia_camera/camera.cpp
 						 progs/demos/inertia_camera/envrnmnt.cpp
 						 progs/demos/inertia_camera/envrnmnt.hpp
 						 progs/demos/inertia_camera/inertia_camera.cpp
+						 progs/demos/inertia_camera/inertia_camera2.cpp
 						 progs/demos/inertia_camera/object.cpp
 						 progs/demos/inertia_camera/object.hpp
 						 progs/demos/inertia_camera/tgaldr.cpp
