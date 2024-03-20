@@ -47,3 +47,15 @@ void MovableObject::drawInScene() const
 		draw();
 	glPopMatrix();
 }
+
+void MovableObject::animate(float timeDelta)
+{
+	position += (speed * timeDelta / 1000.0f);
+	speed += (acceleration * timeDelta / 1000.0f);
+	orientation += (rotationSpeed * timeDelta / 1000.0f);
+}
+
+void MovableObject::SetSpeed(const Vector3f& newSpeed)
+{
+	speed = newSpeed;
+}

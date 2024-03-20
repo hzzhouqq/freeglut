@@ -111,28 +111,28 @@ void Car::draw() const
 	glEnd();
 
 	// Wheels
-	glColor3f(0.1f, 0.1f, 0.1f);
-	glPushMatrix();
-		glTranslatef(-1.1f, 0.35f, -frontWheelFromCenter);
-		glRotatef(steeringAngle, 0.0f, 1.0f, 0.0f);
-		drawWheel();
-	glPopMatrix();
+	//glColor3f(0.1f, 0.1f, 0.1f);
+	//glPushMatrix();
+	//	glTranslatef(-1.1f, 0.35f, -frontWheelFromCenter);
+	//	glRotatef(steeringAngle, 0.0f, 1.0f, 0.0f);
+	//	drawWheel();
+	//glPopMatrix();
 
-	glPushMatrix();
-		glTranslatef(1.1f, 0.35f, -frontWheelFromCenter);
-		glRotatef(steeringAngle, 0.0f, 1.0f, 0.0f);
-		drawWheel();
-	glPopMatrix();
+	//glPushMatrix();
+	//	glTranslatef(1.1f, 0.35f, -frontWheelFromCenter);
+	//	glRotatef(steeringAngle, 0.0f, 1.0f, 0.0f);
+	//	drawWheel();
+	//glPopMatrix();
 
-	glPushMatrix();
-		glTranslatef(-1.1f, 0.35f, -rearWheelFromCenter);
-		drawWheel();
-	glPopMatrix();
+	//glPushMatrix();
+	//	glTranslatef(-1.1f, 0.35f, -rearWheelFromCenter);
+	//	drawWheel();
+	//glPopMatrix();
 
-	glPushMatrix(); // new added
-		glTranslatef(1.1f, 0.35f, -rearWheelFromCenter);
-		drawWheel();
-	glPopMatrix();
+	//glPushMatrix(); // new added
+	//	glTranslatef(1.1f, 0.35f, -rearWheelFromCenter);
+	//	drawWheel();
+	//glPopMatrix();
 }
 
 void Car::driveWithSteering(float movement)

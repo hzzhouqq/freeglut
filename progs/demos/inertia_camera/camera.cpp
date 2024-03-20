@@ -57,22 +57,39 @@ Camera::Camera(float eyeX/*= 0.0f*/, float eyeY/* = 0.0f*/, float eyeZ/* = 0.0f*
 
 void Camera::printScreenMessages(int w, int h)
 {
-	//for (int n = 0; n < 7; n++) if ((screenMessage >> n) & 0x01)
-	//{
-	//	glColor3f(0.7, 0.8, 0.9);
-	//	glRasterPos2f(2 * screenMessagePosition[n].X() / (float)w - 1.0, 2 * screenMessagePosition[n].Y() / (float)h - 1.0);
-	//	int lineBreak = 1;
-	//	for( int i = 0; i < 1024; i++ ) {
-	//		if ( screenMessageText[n][i] == '\0' ) break;
-	//		else if ( screenMessageText[n][i] == '\n' )	{
-	//			glRasterPos2f(2 * screenMessagePosition[n].X() / (float)w - 1.0, 2 * (screenMessagePosition[n].Y() - (float)lineBreak * 16.0) / (float)h - 1.0);
-	//			lineBreak++;
-	//		} else if ( screenMessageText[n][i] == '\t' ) {
-	//			for (int space = 0; space < 4; space++)
-	//				glutBitmapCharacter(GLUT_BITMAP_8_BY_13, ' ');
-	//		} else glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, screenMessageText[n][i]);
-	//	}
-	//}
+	for (int n = 0; n < 7; n++)
+	{
+		if ((screenMessage >> n) & 0x01)
+		{
+			glColor3f(0.7f, 0.8f, 0.9f);
+			glRasterPos2f(2 * screenMessagePosition[n].X() / (float)w - 1.0f,
+				2 * screenMessagePosition[n].Y() / (float)h - 1.0f);
+			int lineBreak = 1;
+			for (int i = 0; i < 1024; i++) {
+				if (screenMessageText[n][i] == '\0')
+				{
+					break;
+				}
+				else if (screenMessageText[n][i] == '\n')
+				{
+					glRasterPos2f(2 * screenMessagePosition[n].X() / (float)w - 1.0f,
+						2 * (screenMessagePosition[n].Y() - (float)lineBreak * 16.0f) / (float)h - 1.0f);
+					lineBreak++;
+				}
+				else if (screenMessageText[n][i] == '\t')
+				{
+					for (int space = 0; space < 4; space++)
+					{
+						glutBitmapCharacter(GLUT_BITMAP_8_BY_13, ' ');
+					}
+				}
+				else
+				{
+					glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, screenMessageText[n][i]);
+				}
+			}
+		}
+	}
 
 	//// DEBUG: Figure drawing
 	//if (!((screenMessage >> 7) & 0x01)) return;
@@ -112,7 +129,7 @@ void Camera::DrawCarScene(const Car& car, const Environment& env,
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	placeObjectHereToFollow(car.Position(), directFollow);
+	placeObjectHereToFollow(car.GetPosition(), directFollow);
 	
 	Render(wWidth, wHeight, car, env, texture);
 

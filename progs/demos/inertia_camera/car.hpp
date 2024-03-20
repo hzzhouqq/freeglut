@@ -37,7 +37,7 @@ public:
 
 	// This function updates the properties of the car
 	// [deltaTime] : the time in milliseconds elapsed since the last animating sequence
-	void animate(float deltaTime);
+	virtual void animate(float deltaTime) override;
 
 	// Tricky shake simulation of the car
 	void simulateBumps(long int actualTime, float amplitude, double frequency);

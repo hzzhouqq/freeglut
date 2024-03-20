@@ -28,8 +28,11 @@ public:
 
 	// This function places the object into the scene
 	void drawInScene() const;
-	const Vector3f& Position() const { return position; }
-	const Vector3f& Speed() const { return speed; }
+	const Vector3f& GetPosition() const { return position; }
+	const Vector3f& GetSpeed() const { return speed; }
+	void SetSpeed(const Vector3f& newSpeed);
+	
+
 	const Vector3f& Acceleration() const { return acceleration; }
 	const Vector3f& Orientation() const { return orientation; }
 	const Vector3f& RotationSpeed() const { return rotationSpeed; }
@@ -40,6 +43,7 @@ public:
 		speed.set(0.0, 0.0, 0.0);
 		rotationSpeed.set(0.0, 0.0, 0.0);
 	}
+
     // This function stops accelerating
 	void evenPace() {
 		acceleration.set(0.0, 0.0, 0.0);
@@ -50,6 +54,11 @@ public:
 		position.set(x, y, z);
 	}
 
+	// This function sets a new orientation for the object
+	void setOrientation(float x = 0.0f, float y = 0.0f, float z = 0.0f) {
+		orientation.set(x, y, z);
+	}
+
 	// This function sets a new speed for the object
 	void setSpeed(float x = 0.0f, float y = 0.0f, float z = 0.0f) {
 		speed.set(x, y, z);
@@ -57,11 +66,7 @@ public:
 
 	// This function updates the properties of the object depending on time
 	// [timeDelta] : the time elapsed since the last animating sequence (in milliseconds)
-	void animate(float timeDelta) {
-		position += (speed * timeDelta / 1000.0f);
-		speed += (acceleration * timeDelta / 1000.0f);
-		orientation += (rotationSpeed * timeDelta / 1000.0f);
-	}
+	virtual void animate(float timeDelta);
 
 	float& AllAroundSize() { return allAroundSize; }
 

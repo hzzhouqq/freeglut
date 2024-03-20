@@ -143,6 +143,8 @@ public:
 	void DrawCarScene(const Car& car, const Environment& env, 
 		bool directFollow, int wWidth, int wHeight, GLuint texture);
 
+	float getLastFrameTime();
+
 protected:
 	// This function defines the matrices, the parameters of the camera and loads the scene 
 	void Render(int width, int height, const Car& car, const Environment& env,
@@ -151,7 +153,6 @@ protected:
 	// Real-time calculation of the frame rate in FPS
 	void recalculateTime();
 
-	float getLastFrameTime();
 };
 
 #endif
